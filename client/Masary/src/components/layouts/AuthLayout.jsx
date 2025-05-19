@@ -27,7 +27,7 @@ const AuthLayout = ({children}) => {
         className="w-64 lg:w-[90%] absolute bottom-10 shadow-lg shadow-blue-400/15"
       />
     </div>
-  </div>
+  </div> 
   );
 };
 
