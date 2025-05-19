@@ -1,10 +1,18 @@
 import React from 'react'
+import AuthLayout from '../../components/layouts/AuthLayout'
 
 const Login = () => {
   return (
-    <div>
-      Login
-    </div>
+    <AuthLayout>
+      <div className="lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center">
+        <h3 className="text-x font-semibold text-black">
+            Welcome back!
+        </h3>
+        <p className="text-xs text-slate-700 mt-[5px] mb-6">
+          Please login to your account  
+        </p>
+      </div>
+    </AuthLayout>
   )
 }
 
