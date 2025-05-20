@@ -3,6 +3,7 @@ import AuthLayout from '../../components/layouts/AuthLayout'
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/inputs/Input';
 import { validateEmail } from '../../utils/helper';
+import ProfilePhotoSelector from '../../components/inputs/ProfilePhotoSelector';
 const SignUp = () => {
     const [profilePic, setProfilePic] = useState(null);
     const [fullName, setFullName] = useState('');
@@ -11,7 +12,27 @@ const SignUp = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const handleSignUp = async (e) => {}
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        console.log("handle");
+        let profileImageUrl = "";
+        if(!fullName){
+            console.log("name valid");
+            setError("Please enter your full name");
+            return;
+        }
+        if(!validateEmail(email)){
+            setError("Please enter a valid email address.");
+            return;
+        }
+        if(!password){
+            setError("Please enter the password");
+            return;
+        }
+        setError("");
+
+
+    }
 
   return (
     <AuthLayout>
@@ -54,7 +75,23 @@ const SignUp = () => {
 
 
                 </div>
+
+
+                {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+                        <button
+                            type="submit"
+                            className="btn-primary">
+                            Signup
+                        </button>
+                        <p className="text-[13px] text-slate-800 mt-3">
+                            Already have an account?
+                            <Link  className="font-medium text-primary underline" to="/login">
+                                Login
+                            </Link>
+                        </p>
             </form>
+
+            
         </div>
     </AuthLayout>
   )
