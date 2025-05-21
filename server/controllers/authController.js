@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-
+const User = require("../models/User");
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
@@ -55,12 +55,12 @@ try {
     }
 
     res.status(200).json({
-        id: user_id,
+        id: user._id,
         user,
-        token: generateToken(user_id),
+        token: generateToken(user._id),
     });
 } catch (err) {
-    console.error(error);
+    console.error(err);
     res.status(500).json({ message: "Server error" });
     
 }
