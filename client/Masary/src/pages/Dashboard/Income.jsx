@@ -90,8 +90,30 @@ const Income = () => {
 
   }
 
-  const handleDownloadIncomeDetails = async () => {}
+  const handleDownloadIncomeDetails = async () => {
+    console.log('Downloading income details');
+    try {
+      const response = await axiosInstance.get(API_PATHS.INCOME.DOWNLOAD_INCOME,
+        {
+          responseType: 'blob',
+        }
 
+      );
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const a = document.createElement('a');
+      a.href = url;
+      a.setAttribute('download', 'income-details.xlsx');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      toast.success("Income details downloaded successfully");
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
 
   useEffect(() => {
@@ -115,7 +137,7 @@ const Income = () => {
           <IncomeList 
             transactions={incomeData.data || []}
             onDelete={(id) => setOpenDeleteAlert({show: true, data: id})}
-            onDownloadIncomeDetails={handleDownloadIncomeDetails}
+            onDownload={handleDownloadIncomeDetails}
           />
         </div>
         <Modal

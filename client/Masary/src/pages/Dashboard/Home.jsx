@@ -46,7 +46,7 @@ const Home = () => {
   useEffect(() => {
     fetchDashboardData();
   }, []);
-
+  console.log(dashboardData);
   return (
     <DashboardLayout activeMenu='Dashboard'>
       <div className='my-5 mx-auto'>

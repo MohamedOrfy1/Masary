@@ -80,21 +80,23 @@ exports.deleteIncome = async (req, res) => {
 exports.downloadIncomeExcel = async (req, res) => {
     const userId = req.user.id;
     try {
-    const income = await Income.find({ userId }).sort({ date: -1 });
+        const income = await Income.find({ userId }).sort({ date: -1 });
 
-    // Prepare data for Excel
-    const data = income.map((item) => ({
-    Source: item.source,
-    Amount: item.amount,
-    Date: item.date,
-    }));
-    const wb = xlsx.utils.book_new();
-    const ws = xlsx.utils.json_to_sheet(data);
-    xlsx.utils.book.append_sheet(wb, ws, "Income");
-    xlsx.writeFile(wb, 'income_details.xlsx');
-    res.download('income_details.xlsx');
+        // Prepare data for Excel
+            const data = income.map((item) => ({
+            Source: item.source,
+            Amount: item.amount,
+            Date: item.date,
+        }));
+        const wb = xlsx.utils.book_new();
+        const ws = xlsx.utils.json_to_sheet(data);
+        xlsx.utils.book_append_sheet(wb, ws, "Expense");
+
+        const buffer = xlsx.write(wb, { type: 'buffer', bookType: 'xlsx' });
+        res.setHeader('Content-Disposition', 'attachment; filename=expense.xlsx');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
     } catch (error) {
-    res.status(500).json({ message: "Server Error" });
+        res.status(500).json({ message: "Server Error" });
     }
-
     };
