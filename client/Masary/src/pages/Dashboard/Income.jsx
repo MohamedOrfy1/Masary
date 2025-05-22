@@ -4,8 +4,11 @@ import IncomeOverview from '../../components/Income/IncomeOverview';
 import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPaths';
 import Modal from '../../components/Modal';
+import AddIncomeForm from '../../components/Income/AddIncomeForm';
+import toast from 'react-hot-toast';
+import IncomeList from '../../components/Income/IncomeList';
 const Income = () => {
-  const [openAddIncomeModal, setOpenAddIncomeModal] = useState(true);
+  const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
   const [incomeData, setIncomeData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openDeleteAlert, setOpenDeleteAlert] = useState(
@@ -24,6 +27,7 @@ const Income = () => {
       );
       if(response.data) {
         setIncomeData(response.data);
+        console.log('Fetched incomeData:', response.data);
       }
     } catch (error) {
       console.log(error);
@@ -33,7 +37,43 @@ const Income = () => {
 
   }
 
-  const handleAddIncome = async (data) => {}
+  const handleAddIncome = async (income) => {
+    const {source, amount, date, icon} = income;
+    if(!source || !source.trim()){
+      toast.error("Source is required");
+      return;
+    }
+
+    if(!amount || isNaN(amount) || Number(amount) <= 0){
+      toast.error("Invalid amount");
+      return;
+    }
+
+    if(!date){
+      toast.error("Date is required");
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.post(
+        `${API_PATHS.INCOME.ADD_INCOME}`,
+        {
+          source,
+          amount,
+          date,
+          icon,
+        }
+      );
+      console.log('Add income response:', response.data);
+      if(response.data){
+        toast.success("Income added successfully");
+        setOpenAddIncomeModal(false);
+        fetchIncomeData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const deleteIncome = async (id) => {}
 
@@ -53,11 +93,17 @@ const Income = () => {
         <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
           <div className=''>
             <IncomeOverview 
-              transactions={incomeData}
+              transactions={incomeData.data || []}
               onAddIncome={() => setOpenAddIncomeModal(true)}
 
             />
           </div>
+
+          <IncomeList 
+            transactions={incomeData.data || []}
+            onDelete={(id) => setOpenDeleteAlert({show: true, data: id})}
+            onDownloadIncomeDetails={handleDownloadIncomeDetails}
+          />
         </div>
         <Modal
           isOpen={openAddIncomeModal}
@@ -65,7 +111,9 @@ const Income = () => {
           title='Add Income'
         >
         <div>
-          Add Income Form
+          <AddIncomeForm 
+            onAddIncome={handleAddIncome}
+          />
         </div>
           
         </Modal>
