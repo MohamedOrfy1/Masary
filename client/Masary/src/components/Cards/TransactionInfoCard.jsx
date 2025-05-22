@@ -45,7 +45,7 @@ const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, o
                 <div className={`flex items-center gap-2 px-3 py-1.5 rounded-ms ${getAmountStyles()} `}
                 >
                 <h6 className='text-xs font-medium'>
-                    {type === "income" ? "+": "-"} ${amount}
+                    {type === "income" ? "+": "-"} {amount} EGP
                 </h6>
                 {type === "income" ? <LuTrendingUp /> : <LuTrendingDown/>}
             </div>
