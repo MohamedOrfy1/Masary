@@ -7,6 +7,7 @@ import Modal from '../../components/Modal';
 import AddIncomeForm from '../../components/Income/AddIncomeForm';
 import toast from 'react-hot-toast';
 import IncomeList from '../../components/Income/IncomeList';
+import DeleteAlert from '../../components/layouts/DeleteAlert';
 const Income = () => {
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
   const [incomeData, setIncomeData] = useState([]);
@@ -75,7 +76,19 @@ const Income = () => {
     }
   }
 
-  const deleteIncome = async (id) => {}
+  const deleteIncome = async (id) => {
+    try{
+      await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id));
+      setOpenDeleteAlert({show: false, data: null});
+      toast.success("Income deleted successfully");
+      fetchIncomeData();
+    } catch (error) {
+      console.log(error);
+    }
+
+
+
+  }
 
   const handleDownloadIncomeDetails = async () => {}
 
@@ -90,7 +103,7 @@ const Income = () => {
   return (
     <DashboardLayout activeMenu='Income'>
       <div className='my-5 mx-auto'>
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-6 md:grid-cols-1'>
           <div className=''>
             <IncomeOverview 
               transactions={incomeData.data || []}
@@ -115,6 +128,20 @@ const Income = () => {
             onAddIncome={handleAddIncome}
           />
         </div>
+          
+        </Modal>
+
+        <Modal
+          isOpen={openDeleteAlert.show}
+          onClose={() => setOpenDeleteAlert({show: false, data: null})}
+          title={
+            `Delete Income`} 
+        >
+          <DeleteAlert
+            content={`Are you sure you want to delete this income?`}
+            onDelete={() => deleteIncome(openDeleteAlert.data)}
+            
+          />
           
         </Modal>
       </div>
