@@ -31,16 +31,16 @@ const CustomLineChart =({data}) => {
         <AreaChart data={data}>
             <defs>
                 <linearGradient id='incomeGradient' x1='0' y1='0' x2='0' y2='1'>
-                    <stop offset='5%' stopColor='#875cf5' stopOpacity={0.4}/>
-                    <stop offset='95%' stopColor='#875cf5' stopOpacity={0}/>
+                    <stop offset='5%' stopColor='#2D2A73' stopOpacity={0.4}/>
+                    <stop offset='95%' stopColor='#2D2A73' stopOpacity={0}/>
                 </linearGradient>
 
             </defs>
             <CartesianGrid stroke='none'/>
-            <XAxis dataKey='name' tick={{fontSize: 12, fill: '#555'}} stroke='none'/>
-            <YAxis tick={{fontSize: 12, fill: '#555'}} stroke='none'/>
+            <XAxis dataKey='name' tick={{fontSize: 12, fill: '#333333'}} stroke='none'/>
+            <YAxis tick={{fontSize: 12, fill: '#333333'}} stroke='none'/>
             <Tooltip content={<CustomTooltip />} />
-            <Area type='monotone' dataKey='amount' stroke='#875cf5' fill="url(#incomeGradient)" strokeWidth={3} dot={{ r:3, fill: "ab8df8"}}/>
+            <Area type='monotone' dataKey='amount' stroke='#2D2A73' fill="url(#incomeGradient)" strokeWidth={3} dot={{ r:3, fill: "#2D2A73"}}/>
         </AreaChart>
     </ResponsiveContainer>
     </div>

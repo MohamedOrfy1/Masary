@@ -31,11 +31,11 @@ const ProfilePhotoSelector = ({image, setImage}) => {
       />
 
       {!image? (
-        <div className='w-20 h-20 flex items-center justify-center bg-purple-100 rounded-full relative'>
-          <LuUser className='text-4xl text-primary' />
+        <div className='w-20 h-20 flex items-center justify-center bg-[#2D2A73]/10 rounded-full relative'>
+          <LuUser className='text-4xl text-[#2D2A73]' />
           <button
             type='button'
-            className='w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4'
+            className='w-8 h-8 flex items-center justify-center bg-[#2D2A73] text-white rounded-full absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4'
             onClick={onChooseFile}
           >
             <LuUpload />
@@ -51,11 +51,10 @@ const ProfilePhotoSelector = ({image, setImage}) => {
 
           <button
             type='button'
-            className='w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full -bottom-1 -right-1'
+            className='w-8 h-8 flex items-center justify-center bg-[#FF6B6B] text-white rounded-full -bottom-1 -right-1'
             onClick={handleRemoveImage}
           >
           <LuTrash />
-
           </button>
         </div>
       )}

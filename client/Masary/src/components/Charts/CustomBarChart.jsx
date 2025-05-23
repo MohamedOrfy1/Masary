@@ -14,7 +14,7 @@ import{
 const CustomBarChart = ({data}) => {
 
     const getBarColor = (index) => {
-        return index % 2 === 0 ? '#875cf5' : '#cfbefb';
+        return index % 2 === 0 ? '#2D2A73' : '#00B8A9';
     }
     const CustomTooltip = ({active, payload}) => {
         if (active && payload && payload.length) {
@@ -25,7 +25,7 @@ const CustomBarChart = ({data}) => {
                         Amount: <span className='text-sm font-medium text-gray-900'> {payload[0].payload.amount} </span>
                     </p>
                 </div>
-            )
+            ) 
         }
         return null;
     };

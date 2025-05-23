@@ -55,19 +55,19 @@ const Home = () => {
             icon={<IoMdCard />}
             label="Total Balance"
             value={addThousandsSeparator(dashboardData?.totalBalance || 0)}
-            color="bg-primary"
+            color="bg-[#2D2A73]"
           />
           <InfoCard 
             icon={<LuWalletMinimal />}
             label="Total Income"
             value={addThousandsSeparator(dashboardData?.totalIncome || 0)}
-            color="bg-orange-500"
+            color="bg-[#F4C95D]"
           />
           <InfoCard 
             icon={<LuHandCoins />}
             label="Total Expense"
             value={addThousandsSeparator(dashboardData?.totalExpense || 0)}
-            color="bg-red-500"
+            color="bg-[#FF6B6B]"
           />
         </div>
 

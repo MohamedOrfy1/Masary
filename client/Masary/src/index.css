@@ -4,7 +4,13 @@
 @theme {
   --font-display: "Poppins", "sans-serif";
   --breakpoint-3xl: 1920px;
-  --color-primary: #875cf5;
+  --color-primary: #2D2A73;
+  --color-accent: #00B8A9;
+  --color-gold: #F4C95D;
+  --color-alert: #FF6B6B;
+  --color-bg-light: #FAFAFA;
+  --color-text-dark: #333333;
+  --color-muted: #CED4DA;
 } 
 
 @layer base{
@@ -12,7 +18,7 @@
     font-family: var(--font-display);
   }
   body{
-    background-color: #fcfcfc;
+    background-color: var(--color-bg-light);
     overflow-x: hidden;
   }
 }
@@ -22,7 +28,7 @@
 }
 
 .btn-primary{
-  @apply w-full text-sm font-medium text-white bg-violet-500 shadow-lg shadow-purple-600/5 p-[10px] rounded-md my-1 hover:bg-purple-600/15 hover:text-purple-600 transition-all duration-200 ease-in-out;
+  @apply w-full text-sm font-medium text-white bg-[#2D2A73] shadow-lg shadow-[#2D2A73]/5 p-[10px] rounded-md my-1 hover:bg-[#2D2A73]/15 hover:text-[#2D2A73] transition-all duration-200 ease-in-out;
 }
 
 .card{
@@ -30,13 +36,13 @@
 }
 
 .card-btn{
-  @apply flex items-center text-[12px] font-medium text-gray-700 hover:text-purple-600 bg-gray-50 hover:bg-purple-50 px-4 py-1.5 rounded-lg border border-gray-200/50 transition-all duration-200 ease-in-out cursor-pointer;
+  @apply flex items-center text-[12px] font-medium text-gray-700 hover:text-[#2D2A73] bg-gray-50 hover:bg-[#2D2A73]/10 px-4 py-1.5 rounded-lg border border-gray-200/50 transition-all duration-200 ease-in-out cursor-pointer;
 }
 
 .add-btn{
-  @apply flex items-center gap-1.5 text-xs md:text-sm font-medium text-purple-600 whitespace-nowrap bg-purple-50 border border-purple-100 rounded-lg px-4 py-2 cursor-pointer;
+  @apply flex items-center gap-1.5 text-xs md:text-sm font-medium text-[#2D2A73] whitespace-nowrap bg-[#2D2A73]/10 border border-[#2D2A73]/20 rounded-lg px-4 py-2 cursor-pointer;
 }
 
 .add-btn-fill{
-  @apply text-white bg-purple-600;
+  @apply text-white bg-[#2D2A73];
 }

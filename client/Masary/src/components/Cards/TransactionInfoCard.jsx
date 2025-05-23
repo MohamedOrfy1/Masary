@@ -9,7 +9,7 @@ import {
 } from "react-icons/lu"
 const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, onDelete }) => {
     const getAmountStyles = () =>
-        type === "income" ? "bg-green-50 text-green-500" : "bg-red-50 text-red-500";
+        type === "income" ? "bg-[#F4C95D]/10 text-[#F4C95D]" : "bg-[#FF6B6B]/10 text-[#FF6B6B]";
     
 
   return <div className='group relative flex items-center gap-4 mt-2 p-3 rounded-lg hover:bg-gray-100-60'>
