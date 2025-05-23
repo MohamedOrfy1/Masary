@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8000";
+export const BASE_URL = "adorable-aileen-mohamedorfy1-64ac2f84.koyeb.app";
 
 // utils/apiPaths.js
 
