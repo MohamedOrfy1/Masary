@@ -24,5 +24,3 @@
 - Frontend deployed on Vercel (masary.vercel.app)
 - Backend deployed on Koyeb
 
-## Acknowledgments:
-This project is inspired by and adapted from the tutorial [Build and Deploy a Full Stack Personal Finance Tracker App | MERN Stack Project](https://www.youtube.com/watch?v=PQnbtnsYUho&t=1064s&ab_channel=TimeToProgram) by **Time To Program** on YouTube.
